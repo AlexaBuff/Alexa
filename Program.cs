@@ -18,7 +18,7 @@ namespace ConsoleITunes
     class Program
     {
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
 
             Model db = new Model();
@@ -68,7 +68,7 @@ namespace ConsoleITunes
 
         }
 
-        static void SeachArtist(IOrderedEnumerable<SongArtist> artistsSortAsc, iTunesSearchManager search, Model model)
+        static async void SeachArtist(IOrderedEnumerable<SongArtist> artistsSortAsc, iTunesSearchManager search, Model model)
         {
             int i = 1;
             foreach (var artist in artistsSortAsc)
@@ -130,7 +130,7 @@ namespace ConsoleITunes
         static void Cache(string Artist, Model db)
         {
             string inputArtistUpper = Artist.ToUpper();
-            var albumsFromDB = db.Albums.ToList().Where(a => a.ArtistName == inputArtistUpper);
+            var albumsFromDB = db.Albums.Where(a => a.ArtistName == inputArtistUpper).ToList();
             int o = 1;
             foreach (var albumFromDB in albumsFromDB)
             {
