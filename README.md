@@ -1,3 +1,4 @@
+# SQLite
 This project is created to find artist's albums on iTunes's server. 
 I wrote this program on C# using SQLite and Entite Framework Core. 
 It's Console aplication and to run one on your Computer you have to instal the .NET 5.0 Runtime (v5.0.9) 
