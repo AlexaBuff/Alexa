@@ -30,9 +30,9 @@ namespace ConsoleITunes
             {
                 try
                 {
-                    Console.WriteLine("     Давайте найдём Вашего артиста на iTunes:(наберите текст и нажмите Enter) ");
+                    Console.WriteLine("\tДавайте найдём Вашего артиста на iTunes:(наберите текст и нажмите Enter) ");
                     inputArtist = Console.ReadLine();
-                    Console.WriteLine("     поиск...");
+                    Console.WriteLine("\tпоиск...");
 
                     var artists = search.GetSongArtistsAsync(inputArtist).Result;
 
@@ -40,11 +40,11 @@ namespace ConsoleITunes
                                          orderby artistsSort.ArtistName
                                          select artistsSort;
                     int artistsCount = artistsSortAsc.Count();
-                    if (artistsCount == 0) Console.WriteLine("      iTunes поискал и не нашёл такого артиста! ");
+                    if (artistsCount == 0) Console.WriteLine("\tiTunes поискал и не нашёл такого артиста! ");
 
                     else
                     {
-                        Console.WriteLine("     iTunes поискал и нашёл: ");
+                        Console.WriteLine("\tiTunes поискал и нашёл: ");
                         SeachArtist(artistsSortAsc, search, db);
                     }
                 }
@@ -76,7 +76,7 @@ namespace ConsoleITunes
                 Console.WriteLine($"{i++} Артист: {artist.ArtistName}");
             }
 
-            Console.WriteLine("     Выберите Вашего артиста, указав порядковый номер из списка:(наберите текст и нажмите Enter)");
+            Console.WriteLine("\tВыберите Вашего артиста, указав порядковый номер из списка:(наберите текст и нажмите Enter)");
 
             bool result = int.TryParse(Console.ReadLine(), out int numberArtist);
             Console.WriteLine("     поиск...");
@@ -94,7 +94,7 @@ namespace ConsoleITunes
                     var OldAlbums = model.Albums.Where(o => o.AlbumArtistID == choiceArtistId);
                     model.Albums.RemoveRange(OldAlbums);
 
-                    Console.WriteLine($"На сервере iTunes артист {choiceArtistName} представлен альбомами: ");
+                    Console.WriteLine($"\tНа сервере iTunes артист {choiceArtistName} представлен альбомами: ");
                     foreach (var album in albums)
                     {
                         DateTime.TryParse(album.ReleaseDate, out dateTime);
@@ -123,7 +123,7 @@ namespace ConsoleITunes
 
             }
             else 
-                Console.WriteLine("     Введите порядковый номер: число!");
+                Console.WriteLine("\tВведите порядковый номер: число!");
         }
 
 
@@ -155,7 +155,7 @@ namespace ConsoleITunes
             {
                 if (e.Response is HttpWebResponse) rsp = e.Response as HttpWebResponse;
                 else rsp = null;
-                Console.WriteLine("     Соединение с сервером iTunes потеряно..., но всё равно поищем его альбомы...");
+                Console.WriteLine("\tСоединение с сервером iTunes потеряно..., но всё равно поищем его альбомы...");
             }
 
             if (rsp != null) return true;
